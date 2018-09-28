@@ -4,13 +4,7 @@ import WeatherData from './WeatherData';
 import './styles.css';
 
 import { SUN } from '../../constants/weathers';
-
-const data = {
-    temperature: 20,
-    weatherState: SUN,
-    humidity: 80,
-    wind: "10 m/s"
-}
+import { api_url_key } from '../../constants/api_url';
 
 class WeatherLocation extends Component {
 
@@ -18,26 +12,42 @@ class WeatherLocation extends Component {
         super();
         this.state = {
             city: 'Cordoba',
-            data: data
+            data: undefined
         }
     }
 
+    componentDidMount = () => {
+      this.actualizarData();
+    }
+    
     actualizarData = () => {
-        console.log("Actualizando datos");
-        fetch('http://api.openweathermap.org/data/2.5/weather?q=Cordoba,ar&APPID=92d440098068a10951f3cad240d5758a').then(res => {
+        
+        fetch(api_url_key).then(res => {
             return res.json()
         }).then(info => {
-            console.log(info);
+            const data = {
+                temperature: info.main.temp,
+                weatherState: SUN,
+                humidity: info.main.humidity,
+                wind: `${info.wind.speed} m/s`
+            }
+
+            this.setState({
+                data
+            })
         })
-        
     }
 
     render(){
+
+        const { city, data } = this.state;
+        console.log(this.state);
+        
+
         return(
             <div className="weatherLocationCont">
-                <Location city={this.state.city}></Location>
-                <WeatherData data={this.state.data} ></WeatherData>
-                <button onClick={this.actualizarData}>ACTUALIZAR</button>
+                <Location city={city}></Location>
+                {data ? <WeatherData data={data}></WeatherData> : "Cargando.."}
             </div>
         )
     }
