@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Location from './Location';
 import WeatherData from './WeatherData';
 import './styles.css';
-
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { SUN } from '../../constants/weathers';
 import { api_url_key } from '../../constants/api_url';
 
@@ -41,13 +41,11 @@ class WeatherLocation extends Component {
     render(){
 
         const { city, data } = this.state;
-        console.log(this.state);
-        
 
         return(
             <div className="weatherLocationCont">
                 <Location city={city}></Location>
-                {data ? <WeatherData data={data}></WeatherData> : "Cargando.."}
+                {data ? <WeatherData data={data}></WeatherData> : <CircularProgress />}
             </div>
         )
     }
