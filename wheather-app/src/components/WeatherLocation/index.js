@@ -4,11 +4,11 @@ import WeatherData from './WeatherData';
 import './styles.css';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import { SUN } from '../../constants/weathers';
-import { api_url_key } from '../../constants/api_url';
+import { getInfoData } from './../../helpers/api_generate';
 
 class WeatherLocation extends Component {
 
-    constructor(){
+    constructor(props){
         super();
         this.state = {
             city: 'Cordoba',
@@ -22,7 +22,7 @@ class WeatherLocation extends Component {
     
     actualizarData = () => {
         
-        fetch(api_url_key).then(res => {
+        fetch(getInfoData('Cordoba,ar')).then(res => {
             return res.json()
         }).then(info => {
             const data = {
@@ -41,6 +41,7 @@ class WeatherLocation extends Component {
     render(){
 
         const { city, data } = this.state;
+        
 
         return(
             <div className="weatherLocationCont">
@@ -50,6 +51,6 @@ class WeatherLocation extends Component {
         )
     }
     
-};
+}
 
 export default WeatherLocation;
