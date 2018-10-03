@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import WeatherList from './components/WeatherList/WeatherList';
 
-const cities = ["Buenos Aires,ar","Madrid,es","New York,us"];
+const cities = ["New York,us","Valencia,es"];
 
 class App extends Component {
   render() {

@@ -3,7 +3,6 @@ import Location from './Location';
 import WeatherData from './WeatherData';
 import './styles.css';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { SUN } from '../../constants/weathers';
 import { getInfoData } from './../../helpers/api_generate';
 
 class WeatherLocation extends Component {
@@ -28,7 +27,7 @@ class WeatherLocation extends Component {
         }).then(info => {
             const data = {
                 temperature: info.main.temp,
-                weatherState: SUN,
+                weatherState: info.weather[0].id,
                 humidity: info.main.humidity,
                 wind: `${info.wind.speed} m/s`
             }
