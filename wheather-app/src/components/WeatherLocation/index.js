@@ -9,9 +9,10 @@ import { getInfoData } from './../../helpers/api_generate';
 class WeatherLocation extends Component {
 
     constructor(props){
+        
         super();
         this.state = {
-            city: 'Cordoba',
+            city: props.city,
             data: undefined
         }
     }
@@ -22,7 +23,7 @@ class WeatherLocation extends Component {
     
     actualizarData = () => {
         
-        fetch(getInfoData('Cordoba,ar')).then(res => {
+        fetch(getInfoData(this.state.city)).then(res => {
             return res.json()
         }).then(info => {
             const data = {
@@ -42,7 +43,6 @@ class WeatherLocation extends Component {
 
         const { city, data } = this.state;
         
-
         return(
             <div className="weatherLocationCont">
                 <Location city={city}></Location>
