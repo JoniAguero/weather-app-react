@@ -2,12 +2,27 @@ import React, { Component } from 'react';
 import WeatherList from './components/WeatherList/WeatherList';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import { AppBar, Toolbar, Typography, Paper } from '@material-ui/core';
+import ForecastExtended from './components/ForescastExtended/ForecastExtended';
 
 const cities = ["New York,us","Valencia,es","Lima,pe"];
 
 class App extends Component {
+
+  constructor(){
+    super();
+    this.state = {
+      city: undefined
+    }
+  }
+
+  showInfoCity = city => {
+    this.setState({
+      city
+    })
+  }
+
   render() {
-    return (
+  return (
       <Grid>
         <Row>
           <AppBar position="sticky">
@@ -20,11 +35,15 @@ class App extends Component {
         </Row>
         <Row className="containerApp">
           <Col xs={12} md={6}>
-            <WeatherList cities={cities}></WeatherList>
+            <WeatherList onSelectedLocation={this.showInfoCity} cities={cities}></WeatherList>
           </Col>
           <Col xs={12} md={6}>
             <Paper>
-              <div className="containerApp details"></div>
+              <div className="containerApp details">
+                <ForecastExtended city={this.state.city}>
+                  
+                </ForecastExtended>
+              </div>
             </Paper>
           </Col>
         </Row>
