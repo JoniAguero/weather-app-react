@@ -7,7 +7,7 @@ const showCities = cities => {
 
 const WeatherList = ({cities}) => (
   
-    <div className="flex-list">
+    <div className="weatherList">
       {showCities(cities)}
     </div>
   
