@@ -6,10 +6,11 @@ export class ForecastItem extends Component {
   render() {
 
     const day = this.props.day;
+    const hour = this.props.hour;
 
     return (
-      <div>
-        <p className = "contain-item"> {day} </p>
+      <div className= "contain-item">
+        <p> {day} {hour}hs </p>
         <WeatherData data = {this.props.data}/>
       </div>
     )

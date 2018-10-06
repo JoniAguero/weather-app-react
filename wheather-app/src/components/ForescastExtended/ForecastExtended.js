@@ -6,8 +6,6 @@ import ForecastItem from './ForecastItem/ForecastItem';
 import { getInfoDataForecast } from './../../helpers/api_generate';
 import  transformForecast  from './../../helpers/transformForecast';
 
-const days = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
-
 export class ForecastExtended extends Component {
 
   constructor(){
@@ -25,22 +23,18 @@ export class ForecastExtended extends Component {
     fetch(getInfoDataForecast(this.props.city)).then(res => {
       return res.json()
     }).then(info => {
-      //const dataTransform = transformForecast(info); 
-      // const forecastDate = {
-      //   temperature: info.main.temp,
-      //   weatherState: info.weather[0].id,
-      //   humidity: info.main.humidity,
-      //   wind: `${info.wind.speed} m/s`
-      // }
-
-      // this.setState({
-      //   forecastDate
-      // })
+      const forecastDate = transformForecast(info);
+      this.setState({
+        forecastDate
+      })
     })
   }
 
-  renderLocalItems = () => {
-    return days.map( day => <ForecastItem day={day} data={this.state.forecastDate} key={day}/> )
+  renderLocalItems = forecastDate => {
+    return forecastDate.map(forecast => <ForecastItem day={forecast.weekDay} 
+                                                      data={forecast.data}
+                                                      hour={forecast.hour}
+                                                      key={`${forecast.weekDay}${forecast.hour}`}/> )
   }
 
   renderProgress = () => {
@@ -59,7 +53,7 @@ export class ForecastExtended extends Component {
           Pronostico Extendido para: {city}
           {
             forecastDate ? 
-            null :
+            this.renderLocalItems(this.state.forecastDate):
             this.renderProgress()
           }
         </h2>
