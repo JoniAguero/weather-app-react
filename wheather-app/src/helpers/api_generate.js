@@ -1,7 +1,13 @@
-import { api_key, url, metric } from './../constants/api_url';
+import { api_key, urlWeather, urlForecast, metric } from './../constants/api_url';
 
-export const getInfoData = (city) => {
+export const getInfoDataWeather = (city) => {
     
-    return `${url}q=${city}&${metric}&APPID=${api_key}`;
+    return `${urlWeather}q=${city}&${metric}&APPID=${api_key}`;
+
+}
+
+export const getInfoDataForecast = (city) => {
+
+    return `${urlForecast}q=${city}&${metric}&APPID=${api_key}`;
 
 }

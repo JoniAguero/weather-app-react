@@ -1,28 +1,68 @@
 import React, { Component } from 'react';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import './ForecastExtended.css';
 import ForecastItem from './ForecastItem/ForecastItem';
 
+import { getInfoDataForecast } from './../../helpers/api_generate';
+
 const days = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
-const data = {
-  temperature: 20,
-  weatherState: 800,
-  humidity: 20,
-  wind: 'sin viento',
-}
 
 export class ForecastExtended extends Component {
 
-  getLocalItems = () => {
-    return days.map( day => <ForecastItem day={day} data={data} key={day}/> )
+  constructor(){
+    super();
+    this.state = {
+      forecastDate: undefined
+    }
+  }
+
+  componentDidMount = () => {
+    this.actualizarData();
+  }
+
+  actualizarData() {
+    fetch(getInfoDataForecast(this.props.city)).then(res => {
+      return res.json()
+    }).then(info => {
+
+      console.log(info);
+      
+      // const forecastDate = {
+      //   temperature: info.main.temp,
+      //   weatherState: info.weather[0].id,
+      //   humidity: info.main.humidity,
+      //   wind: `${info.wind.speed} m/s`
+      // }
+
+      // this.setState({
+      //   forecastDate
+      // })
+    })
+  }
+
+  renderLocalItems = () => {
+    return days.map( day => <ForecastItem day={day} data={this.state.forecastDate} key={day}/> )
+  }
+
+  renderProgress = () => {
+    return ( <div className = "forecastProgress"> < CircularProgress size = {
+        50
+      }
+      /></div > )
   }
 
   render() {
-      const city = this.props.city;
+      const {city} = this.props;
+      const {forecastDate} = this.state;
     return (
       <div>
         < h2 className = "forecastTitle" >
           Pronostico Extendido para: {city}
-          {this.getLocalItems()}
+          {
+            forecastDate ? 
+            null :
+            this.renderProgress()
+          }
         </h2>
       </div>
     )

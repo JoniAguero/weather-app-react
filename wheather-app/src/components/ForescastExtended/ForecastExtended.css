@@ -4,3 +4,9 @@
     padding-top: 15px;
     padding-bottom: 15px;
 }
+.forecastProgress {
+    display: block;
+    text-align: center;
+    margin: auto;
+    margin-top: 20px;
+}

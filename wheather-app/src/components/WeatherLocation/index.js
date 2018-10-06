@@ -3,7 +3,7 @@ import Location from './Location';
 import WeatherData from './WeatherData';
 import './styles.css';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { getInfoData } from './../../helpers/api_generate';
+import { getInfoDataWeather } from './../../helpers/api_generate';
 
 class WeatherLocation extends Component {
 
@@ -22,7 +22,7 @@ class WeatherLocation extends Component {
     
     actualizarData = () => {        
         
-        fetch(getInfoData(this.state.city)).then(res => {
+        fetch(getInfoDataWeather(this.state.city)).then(res => {
             return res.json()
         }).then(info => {
             const data = {
