@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 
 import WeatherData from '../../WeatherLocation/WeatherData';
+import './ForecastItem.css';
 
 export class ForecastItem extends Component {
   render() {
@@ -9,8 +10,8 @@ export class ForecastItem extends Component {
     const hour = this.props.hour;
 
     return (
-      <div className= "contain-item">
-        <p> {day} {hour}hs </p>
+      <div className="contain-item">
+        <p className="item"> {day} {hour}hs </p>
         <WeatherData data = {this.props.data}/>
       </div>
     )

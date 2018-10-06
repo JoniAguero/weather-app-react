@@ -49,14 +49,15 @@ export class ForecastExtended extends Component {
       const {forecastDate} = this.state;
     return (
       <div>
-        < h2 className = "forecastTitle" >
+        <h2 className = "forecastTitle">
           Pronostico Extendido para: {city}
+        </h2>
           {
             forecastDate ? 
             this.renderLocalItems(this.state.forecastDate):
             this.renderProgress()
           }
-        </h2>
+        
       </div>
     )
   }

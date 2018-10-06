@@ -1,4 +1,9 @@
 .contain-item{
     margin: 0;
     text-align: left;
+    
+}
+.item {
+    font-weight: bold;
+    padding-left: 10px;
 }
