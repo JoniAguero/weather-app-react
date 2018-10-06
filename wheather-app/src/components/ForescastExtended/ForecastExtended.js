@@ -30,6 +30,20 @@ export class ForecastExtended extends Component {
     })
   }
 
+  componentWillReceiveProps() {
+    this.setState({
+      forecastDate: undefined
+    })
+    fetch(getInfoDataForecast(this.props.city)).then(res => {
+      return res.json()
+    }).then(info => {
+      const forecastDate = transformForecast(info);
+      this.setState({
+        forecastDate
+      })
+    })
+  }
+
   renderLocalItems = forecastDate => {
     return forecastDate.map(forecast => <ForecastItem day={forecast.weekDay} 
                                                       data={forecast.data}
