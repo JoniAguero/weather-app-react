@@ -3,6 +3,10 @@ body {
   padding: 0;
   font-family: sans-serif;
 }
+
+.center{
+  text-align: center;
+}
 .details {
   background-color: gray;
   width: 100%;

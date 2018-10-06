@@ -40,9 +40,7 @@ class App extends Component {
           <Col xs={12} md={6}>
             <Paper>
               <div className="containerApp details">
-                <ForecastExtended city={this.state.city}>
-                  
-                </ForecastExtended>
+              {!this.state.city? <h1 className="center">No se selecciono Ciudad</h1> : <ForecastExtended city={this.state.city} /> }
               </div>
             </Paper>
           </Col>
