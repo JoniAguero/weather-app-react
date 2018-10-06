@@ -4,6 +4,7 @@ import './ForecastExtended.css';
 import ForecastItem from './ForecastItem/ForecastItem';
 
 import { getInfoDataForecast } from './../../helpers/api_generate';
+import  transformForecast  from './../../helpers/transformForecast';
 
 const days = ['Lunes','Martes','Miércoles','Jueves','Viernes'];
 
@@ -24,9 +25,7 @@ export class ForecastExtended extends Component {
     fetch(getInfoDataForecast(this.props.city)).then(res => {
       return res.json()
     }).then(info => {
-
-      console.log(info);
-      
+      //const dataTransform = transformForecast(info); 
       // const forecastDate = {
       //   temperature: info.main.temp,
       //   weatherState: info.weather[0].id,
