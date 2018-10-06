@@ -4,7 +4,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import { AppBar, Toolbar, Typography, Paper } from '@material-ui/core';
 import ForecastExtended from './components/ForescastExtended/ForecastExtended';
 
-const cities = ["New York,us", "Valencia,es", "Lima,pe"];
+const cities = ["New York,us", "Valencia,es", "Lima,pe", "Cordoba,ar", "Sao Paulo,br"];
 
 class App extends Component {
 
@@ -33,9 +33,11 @@ class App extends Component {
             </Toolbar>
           </AppBar>
         </Row>
-        <Row className="containerApp">
+        <Row>
           <Col xs={12} md={6}>
-            <WeatherList onSelectedLocation={this.showInfoCity} cities={cities}></WeatherList>
+          <div className="containerApp">
+              <WeatherList onSelectedLocation={this.showInfoCity} cities={cities}></WeatherList>
+          </div>
           </Col>
           <Col xs={12} md={6}>
             <Paper>
