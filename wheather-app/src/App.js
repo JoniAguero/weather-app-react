@@ -1,25 +1,12 @@
 import React, { Component } from 'react';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import { AppBar, Toolbar, Typography, Paper } from '@material-ui/core';
-import ForecastExtended from './components/ForescastExtended/ForecastExtended';
 import LocationListContainer from './containers/LocationListContainer';
+import ForecastExtendedContainer from './containers/ForecastExtendedContainer';
 
 const cities = ["New York,us", "Valencia,es", "Lima,pe", "Cordoba,ar", "Sao Paulo,br"];
 
 class App extends Component {
-
-  constructor() {
-    super();
-    this.state = {
-      city: undefined
-    }
-  }
-
-  showInfoCity = city => {
-    this.setState({
-      city
-    })
-  }
 
   render() {
     return (
@@ -43,7 +30,7 @@ class App extends Component {
             <Paper>
               <div className="containerAppDetails">
                 <div className="details">
-                  {!this.state.city ? <h1 className="center">No se selecciono Ciudad</h1> : <ForecastExtended city={this.state.city} />}
+                  <ForecastExtendedContainer />
                 </div>
               </div>
             </Paper>
