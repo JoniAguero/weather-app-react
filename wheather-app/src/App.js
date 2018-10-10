@@ -4,6 +4,9 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import { AppBar, Toolbar, Typography, Paper } from '@material-ui/core';
 import ForecastExtended from './components/ForescastExtended/ForecastExtended';
 
+import { store } from './store';
+import { setCity } from './actions';
+
 const cities = ["New York,us", "Valencia,es", "Lima,pe", "Cordoba,ar", "Sao Paulo,br"];
 
 class App extends Component {
@@ -19,6 +22,9 @@ class App extends Component {
     this.setState({
       city
     })
+
+    store.dispatch(setCity(city));
+
   }
 
   render() {
