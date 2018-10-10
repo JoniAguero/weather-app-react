@@ -1,12 +1,8 @@
 import React, { Component } from 'react';
-import WeatherList from './components/WeatherList/WeatherList';
 import { Grid, Row, Col } from 'react-flexbox-grid';
 import { AppBar, Toolbar, Typography, Paper } from '@material-ui/core';
 import ForecastExtended from './components/ForescastExtended/ForecastExtended';
-
-import { connect } from 'react-redux';
-import { store } from './store';
-import { setCity } from './actions';
+import LocationListContainer from './containers/LocationListContainer';
 
 const cities = ["New York,us", "Valencia,es", "Lima,pe", "Cordoba,ar", "Sao Paulo,br"];
 
@@ -23,9 +19,6 @@ class App extends Component {
     this.setState({
       city
     })
-
-    this.props.setCity(city);
-
   }
 
   render() {
@@ -43,7 +36,7 @@ class App extends Component {
         <Row>
           <Col xs={12} md={6}>
           <div className="containerApp">
-              <WeatherList onSelectedLocation={this.showInfoCity} cities={cities}></WeatherList>
+              <LocationListContainer cities={cities} />
           </div>
           </Col>
           <Col xs={12} md={6}>
@@ -61,9 +54,4 @@ class App extends Component {
   }
 }
 
-const mapDispatchToPropsActions = dispatch => ({
-  setCity: value => dispatch(setCity(value))
-});
-const AppConnected = connect(null, mapDispatchToPropsActions)(App);
-
-export default AppConnected;
+export default App;
