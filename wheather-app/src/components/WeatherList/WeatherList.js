@@ -8,11 +8,11 @@ const WeatherList = ({ cities, onSelectedLocation }) => {
   }
 
   const showCities = cities => (
-    cities.map((city, index) =>
+    cities.map((city) =>
       <WeatherLocation
         onWeatherLocationClick={() => handleWeatherLocationClick(city)}
         city={city}
-        key={index} />))
+        key={city} />))
 
   return (
     <div className="weatherList">
