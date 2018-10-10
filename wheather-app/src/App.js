@@ -4,6 +4,7 @@ import { Grid, Row, Col } from 'react-flexbox-grid';
 import { AppBar, Toolbar, Typography, Paper } from '@material-ui/core';
 import ForecastExtended from './components/ForescastExtended/ForecastExtended';
 
+import { connect } from 'react-redux';
 import { store } from './store';
 import { setCity } from './actions';
 
@@ -23,7 +24,7 @@ class App extends Component {
       city
     })
 
-    store.dispatch(setCity(city));
+    this.props.setCity(city);
 
   }
 
@@ -60,4 +61,9 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapDispatchToPropsActions = dispatch => ({
+  setCity: value => dispatch(setCity(value))
+});
+const AppConnected = connect(null, mapDispatchToPropsActions)(App);
+
+export default AppConnected;
