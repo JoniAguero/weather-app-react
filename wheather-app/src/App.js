@@ -22,9 +22,9 @@ class App extends Component {
         </Row>
         <Row>
           <Col xs={12} md={6}>
-          <div className="containerApp">
+            <div className="containerApp">
               <LocationListContainer cities={cities} />
-          </div>
+            </div>
           </Col>
           <Col xs={12} md={6}>
             <Paper>

@@ -6,6 +6,6 @@ export const city = (state, action) => {
             return { ...state, city: action.payload }
     
         default:
-            return state
+            return state;
     }
 }

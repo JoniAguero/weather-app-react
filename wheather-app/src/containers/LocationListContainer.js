@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
-import PropTypes from 'prop-types'
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
-import { connect } from 'react-redux'
-import { setCity } from '../actions/city';
+import { connect } from 'react-redux';
+import { setSelectedCity } from '../actions/city';
 
 import WeatherList from './../components/WeatherList/WeatherList';
 
@@ -10,7 +10,7 @@ import WeatherList from './../components/WeatherList/WeatherList';
 class LocationListContainer extends Component {
 
   showInfoCity = city => {
-    this.props.setCity(city);
+    this.props.setSelectedCity(city);
   }
 
   render() {
@@ -23,12 +23,12 @@ class LocationListContainer extends Component {
 }
 
 LocationListContainer.propTypes = {
-    setCity: PropTypes.func.isRequired,
+    setSelectedCity: PropTypes.func.isRequired,
     cities: PropTypes.array.isRequired,
 };
 
 const mapDispatchToProps = dispatch => ({
-  setCity: value => dispatch(setCity(value))
+  setSelectedCity: value => dispatch(setSelectedCity(value))
 })
 
 export default connect(null, mapDispatchToProps)(LocationListContainer)

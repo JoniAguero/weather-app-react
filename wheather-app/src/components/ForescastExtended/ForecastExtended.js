@@ -3,9 +3,6 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import './ForecastExtended.css';
 import ForecastItem from './ForecastItem/ForecastItem';
 
-import { getInfoDataForecast } from './../../helpers/api_generate';
-import  transformForecast  from './../../helpers/transformForecast';
-
 export class ForecastExtended extends Component {
 
   constructor(){
@@ -20,28 +17,14 @@ export class ForecastExtended extends Component {
   }
 
   actualizarData() {
-    fetch(getInfoDataForecast(this.props.city)).then(res => {
-      return res.json()
-    }).then(info => {
-      const forecastDate = transformForecast(info);
-      this.setState({
-        forecastDate
-      })
-    })
+    
   }
 
   componentWillReceiveProps() {
     this.setState({
       forecastDate: undefined
     })
-    fetch(getInfoDataForecast(this.props.city)).then(res => {
-      return res.json()
-    }).then(info => {
-      const forecastDate = transformForecast(info);
-      this.setState({
-        forecastDate
-      })
-    })
+ 
   }
 
   renderLocalItems = forecastDate => {
